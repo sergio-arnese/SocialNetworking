@@ -7,6 +7,6 @@ public class Appl {
     }
 
     public void go() {
-
+        Console console = new ConsoleReal();
     }
 }
