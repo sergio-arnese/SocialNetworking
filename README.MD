@@ -5,7 +5,7 @@
 1. Be sure to have installed Java (1.8 or higher) and Maven (3.x or higher)
 2. Download the zip and extract it in a directory of your choice
 3. Open a command line terminal and go to that directory
-4. Compile by typing:
+4. Generate the executable jar by typing:
 
    mvn package
 5. Run by going to "/target" directory and typing:
