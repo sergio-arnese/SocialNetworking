@@ -132,18 +132,37 @@ public class SocialNetworkTest {
         assertTrue(user.getAllFollowedUserMessageWithTimestamp().contains(followedUserMessage));
     }
 
-//    @Test
-//    void testSocialNetworkWithWallInputLine() {
-//        String userName = "user";
-//        String followingCommandString = "follows";
-//        String followedUserName = "auser";
-//        String followingInputLine = userName + " " + followingCommandString + " " + followedUserName;
-//        SocialNetwork socialNetwork = new SocialNetwork();
-//
-//        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), followingInputLine);
-//        List<User> users = socialNetwork.getAllUser();
-//
-//        assertTrue(elaboration.isEmpty());
-//        assertEquals(0, users.size());
-//    }
+    @Test
+    void testSocialNetworkWithWallInputLine() {
+        SocialNetwork socialNetwork = new SocialNetwork();
+
+        String user1Name = "user1";
+        String user1Message = "a user1 message";
+        userPostAMessage(user1Name, user1Message, socialNetwork);
+
+        assertEquals(1, socialNetwork.getAllUser().size());
+        assertTrue(socialNetwork.hasUser(user1Name));
+
+        String user2Name = "user2";
+        String user2Message = "a user2 message";
+        userPostAMessage(user2Name, user2Message, socialNetwork);
+
+        String followingCommandString = "follows";
+        String followingInputLine = user1Name + " " + followingCommandString + " " + user2Name;
+
+        socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
+
+        String wallCommandString = "wall";
+        String wallInputLine = user1Name + " " + wallCommandString;
+
+        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(wallInputLine), new CommandLine(wallInputLine));
+
+        assertFalse(elaboration.isEmpty());
+
+        assertTrue(elaboration.contains(user1Name));
+        assertTrue(elaboration.contains(user2Name));
+
+        assertTrue(elaboration.contains(user1Message));
+        assertTrue(elaboration.contains(user2Message));
+    }
 }
