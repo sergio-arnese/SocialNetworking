@@ -3,6 +3,10 @@ package it.sergio.arnese.kata.socialnetworking.util;
 import java.util.concurrent.TimeUnit;
 
 public class TimeDistance {
+    private final String DAYS_QUANTITY = "days";
+    private final String HOURS_QUANTITY = "hours";
+    private final String MINUTES_QUANTITY = "minutes";
+    private final String SECONDS_QUANTITY = "seconds";
 
     public String getAsString(long ms) {
         long numSeconds = TimeUnit.MILLISECONDS.toSeconds(ms);
@@ -15,16 +19,16 @@ public class TimeDistance {
 
         if( numDays > 0 ) {
             valueToReturn = numDays;
-            quantity = "days";
+            quantity = DAYS_QUANTITY;
         } else if (numHours > 0) {
             valueToReturn = numHours;
-            quantity = "hours";
+            quantity = HOURS_QUANTITY;
         } else if (numMinutes > 0) {
             valueToReturn = numMinutes;
-            quantity = "minutes";
+            quantity = MINUTES_QUANTITY;
         } else {
             valueToReturn = numSeconds;
-            quantity = "seconds";
+            quantity = SECONDS_QUANTITY;
         }
 
         return valueToReturn + " " + quantity;
