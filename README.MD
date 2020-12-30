@@ -10,7 +10,7 @@
    mvn package
 5. Run by going to "/target" directory and typing:
 
-   java -jar SocialNetworking-1.0-SNAPSHOT.jar (eventualmente cambiare nome, non so)
+   java -jar SocialNetworking-1.0-SNAPSHOT.jar
 6. Enjoy!
 
 If you don't want to compile the project, the "/bin" directory contains also an executable jar.
