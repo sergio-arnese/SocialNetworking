@@ -1,10 +1,10 @@
 package it.sergio.arnese.kata.socialnetworking.commandline;
 
-import it.sergio.arnese.kata.socialnetworking.domain.SNCommand;
+import it.sergio.arnese.kata.socialnetworking.domain.SocialNetworkCommand;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class WallCommand extends CommandWithOutput implements SNCommand {
+public class WallCommand extends CommandWithOutput implements SocialNetworkCommand {
     private final String WALL_COMMAND_REPRESENTATION = "wall";
 
     @Override

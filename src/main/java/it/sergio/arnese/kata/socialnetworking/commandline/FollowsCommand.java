@@ -1,10 +1,10 @@
 package it.sergio.arnese.kata.socialnetworking.commandline;
 
-import it.sergio.arnese.kata.socialnetworking.domain.SNCommand;
+import it.sergio.arnese.kata.socialnetworking.domain.SocialNetworkCommand;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class FollowsCommand extends CommandWithoutOutput implements SNCommand {
+public class FollowsCommand extends CommandWithoutOutput implements SocialNetworkCommand {
     private final String FOLLOWS_COMMAND_REPRESENTATION = "follows";
 
     @Override
