@@ -1,5 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking.domain;
 
+import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -18,13 +20,11 @@ public class Message {
     }
 
     public String getContentWithTimestamp() {
-        return getContent() + " " + "("+ getTimeDistance() +" ago )";
+        return getContent() + " " + "("+ getTimeDistance() +" ago)";
     }
 
     private String getTimeDistance() {
-        Date now = new Date();
-        // TimeUnit.MILLISECONDS.toSeconds()
-        return " " + (now.getTime() - getTimestamp().getTime());
+        return new TimeDistance().getAsString(new Date().getTime() - getTimestamp().getTime());
     }
 
     public String getContent() {
