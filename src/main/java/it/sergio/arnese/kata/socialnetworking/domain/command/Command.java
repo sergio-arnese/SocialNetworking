@@ -1,4 +1,4 @@
-package it.sergio.arnese.kata.socialnetworking.commandline;
+package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 

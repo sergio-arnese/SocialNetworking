@@ -1,7 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking;
 
-import it.sergio.arnese.kata.socialnetworking.commandline.Command;
-import it.sergio.arnese.kata.socialnetworking.commandline.CommandRecognizer;
+import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
+import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 
 public class Appl {

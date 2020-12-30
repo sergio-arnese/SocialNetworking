@@ -1,4 +1,6 @@
-package it.sergio.arnese.kata.socialnetworking.commandline;
+package it.sergio.arnese.kata.socialnetworking.domain;
+
+import it.sergio.arnese.kata.socialnetworking.domain.command.*;
 
 import java.util.ArrayList;
 import java.util.List;

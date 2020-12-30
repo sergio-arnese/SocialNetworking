@@ -1,6 +1,5 @@
-package it.sergio.arnese.kata.socialnetworking.commandline;
+package it.sergio.arnese.kata.socialnetworking.domain.command;
 
-import it.sergio.arnese.kata.socialnetworking.domain.SocialNetworkCommand;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 
 public class UnknownCommand extends CommandWithoutOutput implements SocialNetworkCommand {

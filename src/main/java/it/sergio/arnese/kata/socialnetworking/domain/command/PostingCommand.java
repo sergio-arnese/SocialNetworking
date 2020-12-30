@@ -1,7 +1,6 @@
-package it.sergio.arnese.kata.socialnetworking.commandline;
+package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.Message;
-import it.sergio.arnese.kata.socialnetworking.domain.SocialNetworkCommand;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
