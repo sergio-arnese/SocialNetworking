@@ -1,6 +1,10 @@
 package it.sergio.arnese.kata.socialnetworking.commandline;
 
-public class WallCommand implements Recognizable {
+import it.sergio.arnese.kata.socialnetworking.domain.SNCommand;
+import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
+import it.sergio.arnese.kata.socialnetworking.domain.User;
+
+public class WallCommand extends CommandWithOutput implements SNCommand {
     private final String WALL_COMMAND_REPRESENTATION = "wall";
 
     @Override
@@ -24,5 +28,21 @@ public class WallCommand implements Recognizable {
         boolean isThirdArgEmpty = "".equals(thirdArg);
 
         return (!isFirstArgEmpty && isThirdArgEmpty);
+    }
+
+    @Override
+    public void apply(SocialNetwork socialNetwork, String line) {
+        cleanOutput();
+
+        if( socialNetwork.hasUser(getUserName(line)) ) {
+            User user = socialNetwork.getUser(getUserName(line));
+
+            setOutput(user.writeAll());
+        }
+    }
+
+    private String getUserName(String line) {
+        int indexOfExpectedCommand = line.indexOf(WALL_COMMAND_REPRESENTATION);
+        return line.substring(0,indexOfExpectedCommand).trim();
     }
 }

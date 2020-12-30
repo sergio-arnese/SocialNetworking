@@ -9,6 +9,10 @@ public abstract class CommandWithOutput implements Command {
         this.output = Objects.requireNonNull(output);
     }
 
+    protected void cleanOutput() {
+        this.output = "";
+    }
+
     @Override
     public boolean hasOutput() {
         return true;

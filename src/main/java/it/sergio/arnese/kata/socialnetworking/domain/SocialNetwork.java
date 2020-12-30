@@ -14,6 +14,7 @@ public class SocialNetwork {
 
     public String elaborate(Command command, String line) {
         command.apply(this, line);
+
         return ( command.hasOutput() ? command.getOutput() : "" );
     }
 
