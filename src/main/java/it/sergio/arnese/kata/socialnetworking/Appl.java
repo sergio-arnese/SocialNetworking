@@ -6,10 +6,10 @@ import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 public class Appl {
 
     public static void main(String[] args) {
-        new Appl().go();
+        new Appl().run();
     }
 
-    public void go() {
+    public void run() {
         Console console = new ConsoleReal();
         SocialNetwork socialNetwork = new SocialNetwork();
 
