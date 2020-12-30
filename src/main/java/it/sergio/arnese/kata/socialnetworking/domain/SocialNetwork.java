@@ -1,5 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking.domain;
 
+import it.sergio.arnese.kata.socialnetworking.commandline.Command;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +12,9 @@ public class SocialNetwork {
     public SocialNetwork() {
     }
 
-    public String elaborate(CommandLine commandLine) {
-        return "";
+    public String elaborate(Command command, String line) {
+        command.apply(this, line);
+        return ( command.hasOutput() ? command.getOutput() : "" );
     }
 
     public boolean addUser(User user) {

@@ -1,6 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking;
 
-import it.sergio.arnese.kata.socialnetworking.domain.CommandLine;
+import it.sergio.arnese.kata.socialnetworking.commandline.Command;
+import it.sergio.arnese.kata.socialnetworking.commandline.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 
 public class Appl {
@@ -12,9 +13,11 @@ public class Appl {
     public void run() {
         Console console = new ConsoleReal();
         SocialNetwork socialNetwork = new SocialNetwork();
+        CommandRecognizer commandRecognizer = new CommandRecognizer();
 
         while(true) {
-            String elaborationOutput = socialNetwork.elaborate(new CommandLine(console.getLine()));
+            String line = console.getLine();
+            String elaborationOutput = socialNetwork.elaborate((Command) commandRecognizer.recognize(line), line);
 
             if( hasElaborationOutput(elaborationOutput) ) {
                 console.setOutput(elaborationOutput);
