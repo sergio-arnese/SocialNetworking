@@ -19,17 +19,13 @@ public class ReadingCommand extends CommandWithOutput implements SocialNetworkCo
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, String line) {
+    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         cleanOutput();
 
-        if( socialNetwork.hasUser(getUserName(line)) ) {
-            User user = socialNetwork.getUser(getUserName(line));
+        if( socialNetwork.hasUser(commandLine.getLine().trim()) ) {
+            User user = socialNetwork.getUser(commandLine.getLine().trim());
 
             setOutput(user.getAllMessageWithTimestamp());
         }
-    }
-
-    private String getUserName(String line) {
-        return line.trim();
     }
 }

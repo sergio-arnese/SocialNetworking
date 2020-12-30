@@ -10,6 +10,6 @@ public class UnknownCommand extends CommandWithoutOutput implements SocialNetwor
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, String line) {
+    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
     }
 }

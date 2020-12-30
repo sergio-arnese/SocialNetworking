@@ -30,26 +30,19 @@ public class FollowsCommand extends CommandWithoutOutput implements SocialNetwor
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, String line) {
-        if( ! isKnown(line) ) {
+    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+        if( ! isKnown(commandLine.getLine()) ) {
             return;
         }
 
-        if( socialNetwork.hasUser(getUserName(line)) && socialNetwork.hasUser(getFollowedUserName(line)) ) {
-            User user = socialNetwork.getUser(getUserName(line));
-            User followedUser = socialNetwork.getUser(getFollowedUserName(line));
+        String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND_REPRESENTATION);
+        String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND_REPRESENTATION);
+
+        if( socialNetwork.hasUser(userName) && socialNetwork.hasUser(followedUserName) ) {
+            User user = socialNetwork.getUser(userName);
+            User followedUser = socialNetwork.getUser(followedUserName);
 
             user.addFollowed(followedUser);
         }
-    }
-
-    private String getFollowedUserName(String line) {
-        int indexOfExpectedCommand = line.indexOf(FOLLOWS_COMMAND_REPRESENTATION);
-        return line.substring(indexOfExpectedCommand + FOLLOWS_COMMAND_REPRESENTATION.length()).trim();
-    }
-
-    private String getUserName(String line) {
-        int indexOfExpectedCommand = line.indexOf(FOLLOWS_COMMAND_REPRESENTATION);
-        return line.substring(0,indexOfExpectedCommand).trim();
     }
 }

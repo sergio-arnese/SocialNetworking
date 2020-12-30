@@ -30,18 +30,15 @@ public class WallCommand extends CommandWithOutput implements SocialNetworkComma
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, String line) {
+    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         cleanOutput();
 
-        if( socialNetwork.hasUser(getUserName(line)) ) {
-            User user = socialNetwork.getUser(getUserName(line));
+        String userName = commandLine.getArgBeforeCommandName(WALL_COMMAND_REPRESENTATION);
+
+        if( socialNetwork.hasUser(userName) ) {
+            User user = socialNetwork.getUser(userName);
 
             setOutput(user.writeAll());
         }
-    }
-
-    private String getUserName(String line) {
-        int indexOfExpectedCommand = line.indexOf(WALL_COMMAND_REPRESENTATION);
-        return line.substring(0,indexOfExpectedCommand).trim();
     }
 }

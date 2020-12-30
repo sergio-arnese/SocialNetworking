@@ -33,24 +33,21 @@ public class PostingCommand extends CommandWithoutOutput implements SocialNetwor
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, String line) {
-        if( socialNetwork.hasUser(getUserName(line)) ) {
-            User user = socialNetwork.getUser(getUserName(line));
-            user.addMessage(new Message(getUserMessage(line), new Date()));
+    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+        if( ! isKnown(commandLine.getLine()) ) {
+            return;
+        }
+
+        String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND_REPRESENTATION);
+        String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND_REPRESENTATION);
+
+        if( socialNetwork.hasUser(userName) ) {
+            User user = socialNetwork.getUser(userName);
+            user.addMessage(new Message(userMessage, new Date()));
         } else {
-            User user = new User(getUserName(line));
-            user.addMessage(new Message(getUserMessage(line), new Date()));
+            User user = new User(userName);
+            user.addMessage(new Message(userMessage, new Date()));
             socialNetwork.addUser(user);
         }
-    }
-
-    private String getUserMessage(String line) {
-        int indexOfExpectedCommand = line.indexOf(POSTING_COMMAND_REPRESENTATION);
-        return line.substring(indexOfExpectedCommand + POSTING_COMMAND_REPRESENTATION.length()).trim();
-    }
-
-    private String getUserName(String line) {
-        int indexOfExpectedCommand = line.indexOf(POSTING_COMMAND_REPRESENTATION);
-        return line.substring(0,indexOfExpectedCommand).trim();
     }
 }

@@ -1,6 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking.domain;
 
 import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
+import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,8 +13,11 @@ public class SocialNetwork {
     public SocialNetwork() {
     }
 
-    public String elaborate(Command command, String line) {
-        command.apply(this, line);
+    public String elaborate(Command command, CommandLine commandLine) {
+        Objects.requireNonNull(command);
+        Objects.requireNonNull(commandLine);
+
+        command.apply(this, commandLine);
 
         return ( command.hasOutput() ? command.getOutput() : "" );
     }
@@ -25,6 +29,8 @@ public class SocialNetwork {
     }
 
     public boolean hasUser(String userName) {
+        Objects.requireNonNull(userName);
+
         for(User user: this.users) {
             if( userName.equals(user.getName()) ) {
                 return true;
@@ -34,12 +40,21 @@ public class SocialNetwork {
     }
 
     public User getUser(String userName) {
+        Objects.requireNonNull(userName);
+
+        if( !hasUser(userName) ) {
+            throw new IllegalStateException("no user with name: " + userName);
+        }
+
+        User userToReturn = null;
+
         for(User user: this.users) {
             if( userName.equals(user.getName()) ) {
-                return user;
+                userToReturn = user;
             }
         }
-        throw new IllegalStateException("no user with name: " + userName);
+
+        return userToReturn ;
     }
 
     public List<User> getAllUser() {

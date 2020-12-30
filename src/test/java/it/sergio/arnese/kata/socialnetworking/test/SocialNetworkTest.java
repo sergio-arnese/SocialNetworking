@@ -4,6 +4,7 @@ import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
 import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
+import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class SocialNetworkTest {
         String postingCommandString = "->";
         String postingInputLine = userName + " " + " " + postingCommandString + " " + userMessage;
 
-        return socialNetwork.elaborate((Command) new CommandRecognizer().recognize(postingInputLine), postingInputLine);
+        return socialNetwork.elaborate((Command) new CommandRecognizer().recognize(postingInputLine), new CommandLine(postingInputLine));
     }
 
     @Test
@@ -53,7 +54,7 @@ public class SocialNetworkTest {
 
 
         String readingInputLine = userName;
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(readingInputLine), readingInputLine);
+        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(readingInputLine), new CommandLine(readingInputLine));
 
         assertFalse(elaboration.isEmpty());
         assertTrue(elaboration.contains(userMessage));
@@ -67,7 +68,7 @@ public class SocialNetworkTest {
         String followingInputLine = userName + " " + followingCommandString + " " + followedUserName;
         SocialNetwork socialNetwork = new SocialNetwork();
 
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), followingInputLine);
+        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
         List<User> users = socialNetwork.getAllUser();
 
         assertTrue(elaboration.isEmpty());
@@ -118,7 +119,7 @@ public class SocialNetworkTest {
         String followingCommandString = "follows";
         String followingInputLine = userName + " " + followingCommandString + " " + followedUserName;
 
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), followingInputLine);
+        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
 
         assertTrue(elaboration.isEmpty());
         assertEquals(2, socialNetwork.getAllUser().size());
