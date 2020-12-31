@@ -8,29 +8,39 @@ public class TimeDistance {
     private final String MINUTES_QUANTITY = "minutes";
     private final String SECONDS_QUANTITY = "seconds";
 
-    public String getAsString(long ms) {
+    private long distance;
+    private String measure;
+
+    public TimeDistance(long ms) {
+        init(ms);
+    }
+
+    private void init(long ms) {
         long numSeconds = TimeUnit.MILLISECONDS.toSeconds(ms);
         long numMinutes = TimeUnit.MILLISECONDS.toMinutes(ms);
         long numHours = TimeUnit.MILLISECONDS.toHours(ms);
         long numDays = TimeUnit.MILLISECONDS.toDays(ms);
 
-        long valueToReturn;
-        String quantity;
-
         if( numDays > 0 ) {
-            valueToReturn = numDays;
-            quantity = DAYS_QUANTITY;
+            distance = numDays;
+            measure = DAYS_QUANTITY;
         } else if (numHours > 0) {
-            valueToReturn = numHours;
-            quantity = HOURS_QUANTITY;
+            distance = numHours;
+            measure = HOURS_QUANTITY;
         } else if (numMinutes > 0) {
-            valueToReturn = numMinutes;
-            quantity = MINUTES_QUANTITY;
+            distance = numMinutes;
+            measure = MINUTES_QUANTITY;
         } else {
-            valueToReturn = numSeconds;
-            quantity = SECONDS_QUANTITY;
+            distance = numSeconds;
+            measure = SECONDS_QUANTITY;
         }
+    }
 
-        return valueToReturn + " " + quantity;
+    public long getDistance() {
+        return this.distance;
+    }
+
+    public String getMeasure() {
+        return this.measure;
     }
 }

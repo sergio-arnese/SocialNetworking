@@ -3,8 +3,8 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class FollowsCommand extends CommandWithoutOutput implements SocialNetworkCommand {
-    private final String FOLLOWS_COMMAND_REPRESENTATION = "follows";
+public class FollowsCommand extends OutputableBase implements Command, Recognizable, Outputable {
+    private final String FOLLOWS_COMMAND = "follows";
 
     @Override
     public boolean isKnown(String line) {
@@ -12,16 +12,16 @@ public class FollowsCommand extends CommandWithoutOutput implements SocialNetwor
             return false;
         }
 
-        boolean isExpectedCommandContained = line.contains(FOLLOWS_COMMAND_REPRESENTATION);
+        boolean isExpectedCommandContained = line.contains(FOLLOWS_COMMAND);
 
         if( !isExpectedCommandContained ) {
             return false;
         }
 
-        int indexOfExpectedCommand = line.indexOf(FOLLOWS_COMMAND_REPRESENTATION);
+        int indexOfExpectedCommand = line.indexOf(FOLLOWS_COMMAND);
 
         String firstArg = line.substring(0,indexOfExpectedCommand).trim();
-        String thirdArg = line.substring(indexOfExpectedCommand + FOLLOWS_COMMAND_REPRESENTATION.length()).trim();
+        String thirdArg = line.substring(indexOfExpectedCommand + FOLLOWS_COMMAND.length()).trim();
 
         boolean isFirstArgEmpty = "".equals(firstArg);
         boolean isThirdArgEmpty = "".equals(thirdArg);
@@ -35,8 +35,8 @@ public class FollowsCommand extends CommandWithoutOutput implements SocialNetwor
             return;
         }
 
-        String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND_REPRESENTATION);
-        String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND_REPRESENTATION);
+        String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND);
+        String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND);
 
         if( socialNetwork.hasUser(userName) && socialNetwork.hasUser(followedUserName) ) {
             User user = socialNetwork.getUser(userName);

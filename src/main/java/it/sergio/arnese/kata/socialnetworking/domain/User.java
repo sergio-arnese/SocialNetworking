@@ -1,8 +1,6 @@
 package it.sergio.arnese.kata.socialnetworking.domain;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class User {
     private String name;
@@ -37,49 +35,11 @@ public class User {
         return this.name;
     }
 
-    public String writeAll() {
-        // TODO mi suona strano
-        String allMessages = getAllMessageWithTimestamp();
-        String allFollowed = getAllFollowedUserMessageWithTimestamp();
-
-        return allMessages + (!allFollowed.isEmpty() ?  System.lineSeparator() : "") + allFollowed;
+    public List<Message> getAllMessage() {
+        return this.messages;
     }
 
-    private boolean hasMessages() {
-        return !this.messages.isEmpty();
-    }
-
-    public String getAllMessageWithTimestamp() {
-        if( hasMessages() ) {
-            return allMessage();
-        } else {
-            return noMessages();
-        }
-    }
-
-    private String noMessages() {
-        return "";
-    }
-
-    private String allMessage() {
-        StringBuffer buff = new StringBuffer() ;
-
-        for( int i = 0; i < this.messages.size() - 1; i ++ ) {
-            buff.append(this.name + " - " + this.messages.get(i).getContentWithTimestamp()).append(System.lineSeparator());
-        }
-
-        buff.append(this.name + " - " + this.messages.get(this.messages.size() - 1).getContentWithTimestamp());
-
-        return buff.toString();
-    }
-
-
-    public String getAllFollowedUserMessageWithTimestamp() {
-        StringBuffer buff = new StringBuffer() ;
-
-        for(User user: this.followedUsers) {
-            buff.append(user.getAllMessageWithTimestamp());
-        }
-        return buff.toString();
+    public List<User> getAllFollowedUser() {
+        return this.followedUsers;
     }
 }

@@ -1,6 +1,5 @@
 package it.sergio.arnese.kata.socialnetworking.test;
 
-import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
 import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
@@ -17,7 +16,7 @@ public class SocialNetworkTest {
         String postingCommandString = "->";
         String postingInputLine = userName + " " + " " + postingCommandString + " " + userMessage;
 
-        return socialNetwork.elaborate((Command) new CommandRecognizer().recognize(postingInputLine), new CommandLine(postingInputLine));
+        return socialNetwork.elaborate(new CommandRecognizer().recognize(postingInputLine), new CommandLine(postingInputLine));
     }
 
     @Test
@@ -38,11 +37,6 @@ public class SocialNetworkTest {
         assertTrue(elaboration.isEmpty());
         assertEquals(1, socialNetwork.getAllUser().size());
         assertTrue(socialNetwork.hasUser(userName));
-
-        User user = socialNetwork.getUser(userName);
-
-        assertEquals("user", user.getName());
-        assertTrue(user.getAllMessageWithTimestamp().contains(userMessage));
     }
 
     @Test
@@ -54,7 +48,7 @@ public class SocialNetworkTest {
 
 
         String readingInputLine = userName;
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(readingInputLine), new CommandLine(readingInputLine));
+        String elaboration = socialNetwork.elaborate(new CommandRecognizer().recognize(readingInputLine), new CommandLine(readingInputLine));
 
         assertFalse(elaboration.isEmpty());
         assertTrue(elaboration.contains(userMessage));
@@ -68,7 +62,7 @@ public class SocialNetworkTest {
         String followingInputLine = userName + " " + followingCommandString + " " + followedUserName;
         SocialNetwork socialNetwork = new SocialNetwork();
 
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
+        String elaboration = socialNetwork.elaborate(new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
         List<User> users = socialNetwork.getAllUser();
 
         assertTrue(elaboration.isEmpty());
@@ -119,17 +113,16 @@ public class SocialNetworkTest {
         String followingCommandString = "follows";
         String followingInputLine = userName + " " + followingCommandString + " " + followedUserName;
 
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
+        String elaboration = socialNetwork.elaborate(new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
 
         assertTrue(elaboration.isEmpty());
         assertEquals(2, socialNetwork.getAllUser().size());
+        assertTrue(socialNetwork.hasUser(userName));
 
         User user = socialNetwork.getUser(userName);
 
-        assertTrue(user.getAllMessageWithTimestamp().contains(userMessage));
-        assertFalse(user.getAllMessageWithTimestamp().contains(followedUserMessage));
-
-        assertTrue(user.getAllFollowedUserMessageWithTimestamp().contains(followedUserMessage));
+        assertEquals(1, user.getAllFollowedUser().size());
+        assertEquals(followedUserName, user.getAllFollowedUser().get(0).getName());
     }
 
     @Test
@@ -150,12 +143,12 @@ public class SocialNetworkTest {
         String followingCommandString = "follows";
         String followingInputLine = user1Name + " " + followingCommandString + " " + user2Name;
 
-        socialNetwork.elaborate((Command) new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
+        socialNetwork.elaborate(new CommandRecognizer().recognize(followingInputLine), new CommandLine(followingInputLine));
 
         String wallCommandString = "wall";
         String wallInputLine = user1Name + " " + wallCommandString;
 
-        String elaboration = socialNetwork.elaborate((Command) new CommandRecognizer().recognize(wallInputLine), new CommandLine(wallInputLine));
+        String elaboration = socialNetwork.elaborate(new CommandRecognizer().recognize(wallInputLine), new CommandLine(wallInputLine));
 
         assertFalse(elaboration.isEmpty());
 

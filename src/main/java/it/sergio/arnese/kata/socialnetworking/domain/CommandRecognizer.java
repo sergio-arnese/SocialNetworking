@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class CommandRecognizer {
-    private List<Recognizable> allKnownCommand = new ArrayList<>();
+    private final List<Recognizable> allKnownCommand = new ArrayList<>();
 
     public CommandRecognizer() {
         init();
@@ -20,27 +20,27 @@ public class CommandRecognizer {
         this.allKnownCommand.add(new WallCommand());
     }
 
-    public Recognizable recognize(String line) {
+    public <T extends Recognizable> T recognize(String line) {
         Objects.requireNonNull(line);
 
         return recognizeCommand(line);
     }
 
-    private Recognizable recognizeCommand(String line) {
-        Recognizable recognizedCommand = recognizeCommand(line, this.allKnownCommand);
+    private <T extends Recognizable> T recognizeCommand(String line) {
+        T recognizedCommand = recognizeCommand(line, this.allKnownCommand);
 
         if( recognizedCommand == null ) {
-            recognizedCommand = new UnknownCommand();
+            recognizedCommand = (T) new UnknownCommand();
         }
 
         return recognizedCommand;
     }
 
-    private Recognizable recognizeCommand(String line, List<Recognizable> recognizables) {
-        Recognizable recognizedCommand = null;
-        for (Recognizable command: recognizables) {
-            if( command.isKnown(line) ) {
-                recognizedCommand = command;
+    private <T extends Recognizable> T recognizeCommand(String line, List<Recognizable> recognizables) {
+        T recognizedCommand = null;
+        for (Recognizable recognizable: recognizables) {
+            if( recognizable.isKnown(line) ) {
+                recognizedCommand = (T) recognizable;
             }
         }
 

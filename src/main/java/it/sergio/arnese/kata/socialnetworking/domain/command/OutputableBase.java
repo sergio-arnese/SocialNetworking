@@ -1,10 +1,8 @@
 package it.sergio.arnese.kata.socialnetworking.domain.command;
 
-import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
-
 import java.util.Objects;
 
-public abstract class CommandWithOutput implements Command {
+public abstract class OutputableBase implements Outputable {
     protected String output = "";
 
     protected void setOutput(String output) {
@@ -17,7 +15,7 @@ public abstract class CommandWithOutput implements Command {
 
     @Override
     public boolean hasOutput() {
-        return true;
+        return !"".equals(getOutput());
     }
 
     @Override

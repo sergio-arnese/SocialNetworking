@@ -1,6 +1,5 @@
 package it.sergio.arnese.kata.socialnetworking;
 
-import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
 import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
@@ -18,7 +17,7 @@ public class Appl {
 
         while(true) {
             String line = console.getLine();
-            String elaborationOutput = socialNetwork.elaborate((Command) commandRecognizer.recognize(line), new CommandLine(line));
+            String elaborationOutput = socialNetwork.elaborate(commandRecognizer.recognize(line), new CommandLine(line));
 
             if( hasElaborationOutput(elaborationOutput) ) {
                 console.setOutput(elaborationOutput);

@@ -6,8 +6,8 @@ import it.sergio.arnese.kata.socialnetworking.domain.User;
 
 import java.util.Date;
 
-public class PostingCommand extends CommandWithoutOutput implements SocialNetworkCommand {
-    private final String POSTING_COMMAND_REPRESENTATION = "->";
+public class PostingCommand extends OutputableBase implements Command, Recognizable, Outputable {
+    private final String POSTING_COMMAND = "->";
 
     @Override
     public boolean isKnown(String line) {
@@ -15,16 +15,16 @@ public class PostingCommand extends CommandWithoutOutput implements SocialNetwor
             return false;
         }
 
-        boolean isExpectedCommandContained = line.contains(POSTING_COMMAND_REPRESENTATION);
+        boolean isExpectedCommandContained = line.contains(POSTING_COMMAND);
 
         if( !isExpectedCommandContained ) {
             return false;
         }
 
-        int indexOfExpectedCommand = line.indexOf(POSTING_COMMAND_REPRESENTATION);
+        int indexOfExpectedCommand = line.indexOf(POSTING_COMMAND);
 
         String firstArg = line.substring(0,indexOfExpectedCommand).trim();
-        String thirdArg = line.substring(indexOfExpectedCommand + POSTING_COMMAND_REPRESENTATION.length()).trim();
+        String thirdArg = line.substring(indexOfExpectedCommand + POSTING_COMMAND.length()).trim();
 
         boolean isFirstArgEmpty = "".equals(firstArg);
         boolean isThirdArgEmpty = "".equals(thirdArg);
@@ -38,8 +38,8 @@ public class PostingCommand extends CommandWithoutOutput implements SocialNetwor
             return;
         }
 
-        String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND_REPRESENTATION);
-        String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND_REPRESENTATION);
+        String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND);
+        String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND);
 
         if( socialNetwork.hasUser(userName) ) {
             User user = socialNetwork.getUser(userName);

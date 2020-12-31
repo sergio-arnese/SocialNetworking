@@ -12,6 +12,7 @@ public class CommandLine {
     public String getLine() {
         return this.line;
     }
+
     public String getArgBeforeCommandName(String commandName) {
         Objects.requireNonNull(commandName);
 

@@ -41,7 +41,8 @@ public class UserTest {
         String message = "message";
         user.addMessage(new Message(message, new Date()));
 
-        assertTrue(user.getAllMessageWithTimestamp().contains(message));
+        assertEquals(1, user.getAllMessage().size());
+        assertEquals(message, user.getAllMessage().get(0).getContent());
     }
 
     @Test
@@ -58,6 +59,9 @@ public class UserTest {
 
         user.addFollowed(followedUser);
 
-        assertTrue(user.getAllFollowedUserMessageWithTimestamp().contains(followedUserMessage));
+        assertEquals(1,user.getAllFollowedUser().size());
+        assertEquals(followedUsername, user.getAllFollowedUser().get(0).getName());
+        assertEquals(1,user.getAllFollowedUser().get(0).getAllMessage().size());
+        assertEquals(followedUserMessage, user.getAllFollowedUser().get(0).getAllMessage().get(0).getContent());
     }
 }
