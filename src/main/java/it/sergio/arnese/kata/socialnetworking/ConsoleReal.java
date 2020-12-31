@@ -17,7 +17,9 @@ public class ConsoleReal implements Console {
 
     @Override
     public void setOutput(String output) {
-        System.out.println(output);
+        if( !"".equals(output) ) {
+            System.out.println(output);
+        }
     }
 
     private String nextLine(){

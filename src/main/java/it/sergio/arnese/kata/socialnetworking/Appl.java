@@ -18,14 +18,7 @@ public class Appl {
         while(true) {
             String line = console.getLine();
             String elaborationOutput = socialNetwork.elaborate(commandRecognizer.recognize(line), new CommandLine(line));
-
-            if( hasElaborationOutput(elaborationOutput) ) {
-                console.setOutput(elaborationOutput);
-            }
+            console.setOutput(elaborationOutput);
         }
-    }
-
-    private boolean hasElaborationOutput(String output) {
-        return !"".equals(output);
     }
 }
