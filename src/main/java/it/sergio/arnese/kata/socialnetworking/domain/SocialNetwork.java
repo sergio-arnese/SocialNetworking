@@ -17,9 +17,7 @@ public class SocialNetwork {
         Objects.requireNonNull(command);
         Objects.requireNonNull(commandLine);
 
-        command.apply(this, commandLine);
-
-        return ( command.hasOutput() ? command.getOutput() : "" );
+        return command.apply(this, commandLine);
     }
 
     public boolean addUser(User user) {

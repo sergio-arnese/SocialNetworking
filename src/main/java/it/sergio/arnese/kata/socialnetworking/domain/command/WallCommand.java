@@ -8,7 +8,7 @@ import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 import java.util.Date;
 import java.util.List;
 
-public class WallCommand extends OutputableBase implements Command, Recognizable, Outputable {
+public class WallCommand implements Command, Recognizable {
     private final String WALL_COMMAND = "wall";
 
     @Override
@@ -35,16 +35,16 @@ public class WallCommand extends OutputableBase implements Command, Recognizable
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
-        cleanOutput();
-
+    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         String userName = commandLine.getArgBeforeCommandName(WALL_COMMAND);
 
         if( socialNetwork.hasUser(userName) ) {
             User user = socialNetwork.getUser(userName);
 
-            setOutput(prepareOutput(user));
+            return prepareOutput(user);
         }
+
+        return "";
     }
 
     private String prepareOutput(User user) {

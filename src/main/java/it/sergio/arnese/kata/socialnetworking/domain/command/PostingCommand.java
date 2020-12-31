@@ -6,7 +6,7 @@ import it.sergio.arnese.kata.socialnetworking.domain.User;
 
 import java.util.Date;
 
-public class PostingCommand extends OutputableBase implements Command, Recognizable, Outputable {
+public class PostingCommand implements Command, Recognizable {
     private final String POSTING_COMMAND = "->";
 
     @Override
@@ -33,9 +33,9 @@ public class PostingCommand extends OutputableBase implements Command, Recogniza
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         if( ! isKnown(commandLine.getLine()) ) {
-            return;
+            return "";
         }
 
         String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND);
@@ -49,5 +49,7 @@ public class PostingCommand extends OutputableBase implements Command, Recogniza
             user.addMessage(new Message(userMessage, new Date()));
             socialNetwork.addUser(user);
         }
+
+        return "";
     }
 }

@@ -2,7 +2,7 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 
-public class UnknownCommand extends OutputableBase implements Command, Recognizable, Outputable {
+public class UnknownCommand implements Command, Recognizable {
 
     @Override
     public boolean isKnown(String line) {
@@ -10,6 +10,7 @@ public class UnknownCommand extends OutputableBase implements Command, Recogniza
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+        return "";
     }
 }

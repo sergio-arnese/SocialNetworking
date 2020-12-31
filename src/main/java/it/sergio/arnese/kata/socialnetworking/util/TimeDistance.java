@@ -3,10 +3,10 @@ package it.sergio.arnese.kata.socialnetworking.util;
 import java.util.concurrent.TimeUnit;
 
 public class TimeDistance {
-    private final String DAYS_QUANTITY = "days";
-    private final String HOURS_QUANTITY = "hours";
-    private final String MINUTES_QUANTITY = "minutes";
-    private final String SECONDS_QUANTITY = "seconds";
+    private final String DAYS_QUANTITY = "DD";
+    private final String HOURS_QUANTITY = "HH";
+    private final String MINUTES_QUANTITY = "MM";
+    private final String SECONDS_QUANTITY = "SS";
 
     private long distance;
     private String measure;

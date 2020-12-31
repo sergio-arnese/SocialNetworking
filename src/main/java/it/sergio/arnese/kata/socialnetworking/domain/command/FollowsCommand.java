@@ -3,7 +3,7 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class FollowsCommand extends OutputableBase implements Command, Recognizable, Outputable {
+public class FollowsCommand implements Command, Recognizable {
     private final String FOLLOWS_COMMAND = "follows";
 
     @Override
@@ -30,9 +30,9 @@ public class FollowsCommand extends OutputableBase implements Command, Recogniza
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         if( ! isKnown(commandLine.getLine()) ) {
-            return;
+            return "";
         }
 
         String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND);
@@ -44,5 +44,7 @@ public class FollowsCommand extends OutputableBase implements Command, Recogniza
 
             user.addFollowed(followedUser);
         }
+
+        return "";
     }
 }

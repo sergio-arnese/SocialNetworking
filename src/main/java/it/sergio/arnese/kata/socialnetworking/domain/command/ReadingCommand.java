@@ -8,7 +8,7 @@ import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 import java.util.Date;
 import java.util.List;
 
-public class ReadingCommand extends OutputableBase implements Command, Recognizable, Outputable {
+public class ReadingCommand implements Command, Recognizable {
 
     @Override
     public boolean isKnown(String line) {
@@ -24,14 +24,14 @@ public class ReadingCommand extends OutputableBase implements Command, Recogniza
     }
 
     @Override
-    public void apply(SocialNetwork socialNetwork, CommandLine commandLine) {
-        cleanOutput();
-
+    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
         if( socialNetwork.hasUser(commandLine.getLine().trim()) ) {
             User user = socialNetwork.getUser(commandLine.getLine().trim());
 
-            setOutput(getAllFormatted(user.getAllMessage()));
+            return getAllFormatted(user.getAllMessage());
         }
+
+        return "";
     }
 
     private String getFormatted(Message message) {
