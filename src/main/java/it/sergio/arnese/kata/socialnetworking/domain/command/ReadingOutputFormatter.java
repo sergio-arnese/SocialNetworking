@@ -13,7 +13,7 @@ public class ReadingOutputFormatter extends CommandOutputFormatter {
     }
 
     @Override
-    public String getFormatted(String userName, Message message) {
+    protected String getFormatted(String userName, Message message) {
         TimeDistance timeDistance = new TimeDistance(new Date().getTime() - message.getTimestamp().getTime());
 
         return message.getContent() + " " + "("+ timeDistance.getDistance() + " " + timeDistance.getMeasure() + " ago)";

@@ -17,7 +17,7 @@ public class WallOutputFormatter extends CommandOutputFormatter {
         return ( followedMessages.length() != 0 ? userMessages + System.lineSeparator() + followedMessages : userMessages );
     }
 
-    public String getAllFollowedUserMessageFormatted(List<User> users) {
+    private String getAllFollowedUserMessageFormatted(List<User> users) {
         if( users.isEmpty() ) {
             return "";
         }
@@ -36,7 +36,8 @@ public class WallOutputFormatter extends CommandOutputFormatter {
         return buff.toString();
     }
 
-    public String getFormatted(String userName, Message message) {
+    @Override
+    protected String getFormatted(String userName, Message message) {
         TimeDistance timeDistance = new TimeDistance(new Date().getTime() - message.getTimestamp().getTime());
 
         return userName + " - " + message.getContent() + " " + "("+ timeDistance.getDistance() + " " + timeDistance.getMeasure() + " ago)";

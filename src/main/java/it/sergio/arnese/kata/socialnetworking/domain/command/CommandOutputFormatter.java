@@ -26,5 +26,5 @@ public abstract class CommandOutputFormatter {
         return getAllMessageFormatted("", messages);
     }
 
-    public abstract String getFormatted(String userName, Message message);
+    protected abstract String getFormatted(String userName, Message message);
 }
