@@ -7,33 +7,24 @@ public class FollowsCommand implements Command, Recognizable {
     private final String FOLLOWS_COMMAND = "follows";
 
     @Override
-    public boolean isKnown(String line) {
-        if(line == null) {
+    public boolean isKnown(CommandLine commandLine) {
+        if(commandLine == null) {
             return false;
         }
 
-        boolean isExpectedCommandContained = line.contains(FOLLOWS_COMMAND);
-
-        if( !isExpectedCommandContained ) {
-            return false;
-        }
-
-        int indexOfExpectedCommand = line.indexOf(FOLLOWS_COMMAND);
-
-        String firstArg = line.substring(0,indexOfExpectedCommand).trim();
-        String thirdArg = line.substring(indexOfExpectedCommand + FOLLOWS_COMMAND.length()).trim();
-
-        boolean isFirstArgEmpty = "".equals(firstArg);
-        boolean isThirdArgEmpty = "".equals(thirdArg);
+        boolean isFirstArgEmpty = "".equals(commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND));
+        boolean isThirdArgEmpty = "".equals(commandLine.getArgAfterCommandName(FOLLOWS_COMMAND));
 
         return (!isFirstArgEmpty && !isThirdArgEmpty);
     }
 
     @Override
-    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
-        if( ! isKnown(commandLine.getLine()) ) {
-            return "";
-        }
+    public String apply(SocialNetwork socialNetwork) {
+        CommandLine commandLine = socialNetwork.getCommandLine();
+
+//        if( ! isKnown(commandLine) ) {
+//            return "";
+//        }
 
         String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND);
         String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND);

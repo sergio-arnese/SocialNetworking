@@ -6,20 +6,22 @@ import it.sergio.arnese.kata.socialnetworking.domain.User;
 public class ReadingCommand implements Command, Recognizable {
 
     @Override
-    public boolean isKnown(String line) {
-        String[] args = line.split(" ");
+    public boolean isKnown(CommandLine commandLine) {
+        String[] args = commandLine.getLine().split(" ");
 
         if( args.length != 1 ) {
             return false;
         }
 
-        boolean isArgEmpty = "".equals(line.trim());
+        boolean isArgEmpty = "".equals(commandLine.getLine().trim());
 
         return !isArgEmpty;
     }
 
     @Override
-    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
+    public String apply(SocialNetwork socialNetwork) {
+        CommandLine commandLine = socialNetwork.getCommandLine();
+
         if( socialNetwork.hasUser(commandLine.getLine().trim()) ) {
             User user = socialNetwork.getUser(commandLine.getLine().trim());
 

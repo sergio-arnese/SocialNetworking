@@ -22,14 +22,14 @@ public class CommandRecognizer {
         this.unknownCommand = command;
     }
 
-    public <T extends Recognizable> T recognize(String line) {
-        Objects.requireNonNull(line);
+    public <T extends Recognizable> T recognize(CommandLine commandLine) {
+        Objects.requireNonNull(commandLine);
 
-        return recognizeCommand(line);
+        return recognizeCommand(commandLine);
     }
 
-    private <T extends Recognizable> T recognizeCommand(String line) {
-        T recognizedCommand = recognizeCommand(line, this.allKnownCommand);
+    private <T extends Recognizable> T recognizeCommand(CommandLine commandLine) {
+        T recognizedCommand = recognizeCommand(commandLine, this.allKnownCommand);
 
         if( recognizedCommand == null ) {
             recognizedCommand = (T)this.unknownCommand;
@@ -38,10 +38,10 @@ public class CommandRecognizer {
         return recognizedCommand;
     }
 
-    private <T extends Recognizable> T recognizeCommand(String line, List<Recognizable> recognizables) {
+    private <T extends Recognizable> T recognizeCommand(CommandLine commandLine, List<Recognizable> recognizables) {
         T recognizedCommand = null;
         for (Recognizable recognizable: recognizables) {
-            if( recognizable.isKnown(line) ) {
+            if( recognizable.isKnown(commandLine) ) {
                 recognizedCommand = (T) recognizable;
             }
         }

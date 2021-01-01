@@ -10,33 +10,24 @@ public class PostingCommand implements Command, Recognizable {
     private final String POSTING_COMMAND = "->";
 
     @Override
-    public boolean isKnown(String line) {
-        if(line == null) {
+    public boolean isKnown(CommandLine commandLine) {
+        if(commandLine == null) {
             return false;
         }
 
-        boolean isExpectedCommandContained = line.contains(POSTING_COMMAND);
-
-        if( !isExpectedCommandContained ) {
-            return false;
-        }
-
-        int indexOfExpectedCommand = line.indexOf(POSTING_COMMAND);
-
-        String firstArg = line.substring(0,indexOfExpectedCommand).trim();
-        String thirdArg = line.substring(indexOfExpectedCommand + POSTING_COMMAND.length()).trim();
-
-        boolean isFirstArgEmpty = "".equals(firstArg);
-        boolean isThirdArgEmpty = "".equals(thirdArg);
+        boolean isFirstArgEmpty = "".equals(commandLine.getArgBeforeCommandName(POSTING_COMMAND));
+        boolean isThirdArgEmpty = "".equals(commandLine.getArgAfterCommandName(POSTING_COMMAND));
 
         return (!isFirstArgEmpty && !isThirdArgEmpty);
     }
 
     @Override
-    public String apply(SocialNetwork socialNetwork, CommandLine commandLine) {
-        if( ! isKnown(commandLine.getLine()) ) {
-            return "";
-        }
+    public String apply(SocialNetwork socialNetwork) {
+        CommandLine commandLine = socialNetwork.getCommandLine();
+
+//        if( ! isKnown(commandLine) ) {
+//            return "";
+//        }
 
         String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND);
         String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND);

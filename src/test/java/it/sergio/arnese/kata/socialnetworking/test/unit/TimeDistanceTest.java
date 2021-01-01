@@ -7,32 +7,30 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TimeDistanceTest {
 
-    private long msInAsecond = 1000;
-    private long secondsInaMinute = 60;
-    private long minutesInAnHour = 60;
-    private long hoursInADay = 24;
-
-    private long getMsInAsecond() {
-        return this.msInAsecond;
+    private long getMsInOneSecond() {
+        return 1000;
     }
 
-    private long getMsInAMinute() {
-        return this.secondsInaMinute * getMsInAsecond();
+    private long getMsInOneMinute() {
+        long secondsInaMinute = 60;
+        return secondsInaMinute * getMsInOneSecond();
     }
 
-    private long getMsInAnHour() {
-        return this.minutesInAnHour * getMsInAMinute();
+    private long getMsInOneHour() {
+        long minutesInAnHour = 60;
+        return minutesInAnHour * getMsInOneMinute();
     }
 
-    private long getMsInADay() {
-        return this.hoursInADay * getMsInAnHour();
+    private long getMsInOneDay() {
+        long hoursInADay = 24;
+        return hoursInADay * getMsInOneHour();
     }
 
     @Test
     public void testOneSecond() {
         long oneSecond = 1;
 
-        TimeDistance timeDistance = new TimeDistance(oneSecond * getMsInAsecond());
+        TimeDistance timeDistance = new TimeDistance(oneSecond * getMsInOneSecond());
 
         assertEquals(timeDistance.getDistance(), oneSecond);
         assertEquals(timeDistance.getMeasure(), TimeDistance.SECONDS);
@@ -42,7 +40,7 @@ public class TimeDistanceTest {
     public void testTwoSeconds() {
         long twoSeconds = 2;
 
-        TimeDistance timeDistance = new TimeDistance(twoSeconds * getMsInAsecond());
+        TimeDistance timeDistance = new TimeDistance(twoSeconds * getMsInOneSecond());
 
         assertEquals(timeDistance.getDistance(), twoSeconds);
         assertEquals(timeDistance.getMeasure(), TimeDistance.SECONDS);
@@ -52,7 +50,7 @@ public class TimeDistanceTest {
     public void testOneMinute() {
         long oneMinute = 1;
 
-        TimeDistance timeDistance = new TimeDistance(oneMinute * getMsInAMinute());
+        TimeDistance timeDistance = new TimeDistance(oneMinute * getMsInOneMinute());
 
         assertEquals(timeDistance.getDistance(), oneMinute);
         assertEquals(timeDistance.getMeasure(), TimeDistance.MINUTES);
@@ -62,7 +60,7 @@ public class TimeDistanceTest {
     public void testTenMinutes() {
         long tenMinutes = 10;
 
-        TimeDistance timeDistance = new TimeDistance(tenMinutes * getMsInAMinute());
+        TimeDistance timeDistance = new TimeDistance(tenMinutes * getMsInOneMinute());
 
         assertEquals(timeDistance.getDistance(), tenMinutes);
         assertEquals(timeDistance.getMeasure(), TimeDistance.MINUTES);
@@ -72,7 +70,7 @@ public class TimeDistanceTest {
     public void testOneHour() {
         long oneHour = 1;
 
-        TimeDistance timeDistance = new TimeDistance(oneHour * getMsInAnHour());
+        TimeDistance timeDistance = new TimeDistance(oneHour * getMsInOneHour());
 
         assertEquals(timeDistance.getDistance(), oneHour);
         assertEquals(timeDistance.getMeasure(), TimeDistance.HOURS);
@@ -82,7 +80,7 @@ public class TimeDistanceTest {
     public void testThreeHours() {
         long threeHours = 3;
 
-        TimeDistance timeDistance = new TimeDistance(threeHours * getMsInAnHour());
+        TimeDistance timeDistance = new TimeDistance(threeHours * getMsInOneHour());
 
         assertEquals(timeDistance.getDistance(), threeHours);
         assertEquals(timeDistance.getMeasure(), TimeDistance.HOURS);
@@ -92,7 +90,7 @@ public class TimeDistanceTest {
     public void testOneDay() {
         long oneDay = 1;
 
-        TimeDistance timeDistance = new TimeDistance(oneDay * getMsInADay());
+        TimeDistance timeDistance = new TimeDistance(oneDay * getMsInOneDay());
 
         assertEquals(timeDistance.getDistance(), oneDay);
         assertEquals(timeDistance.getMeasure(), TimeDistance.DAYS);
@@ -102,7 +100,7 @@ public class TimeDistanceTest {
     public void testFiftyDays() {
         long fiftyDays = 50;
 
-        TimeDistance timeDistance = new TimeDistance(fiftyDays * getMsInADay());
+        TimeDistance timeDistance = new TimeDistance(fiftyDays * getMsInOneDay());
 
         assertEquals(timeDistance.getDistance(), fiftyDays);
         assertEquals(timeDistance.getMeasure(), TimeDistance.DAYS);
