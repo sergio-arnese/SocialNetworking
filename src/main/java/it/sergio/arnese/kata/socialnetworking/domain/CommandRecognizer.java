@@ -8,16 +8,18 @@ import java.util.Objects;
 
 public class CommandRecognizer {
     private final List<Recognizable> allKnownCommand = new ArrayList<>();
+    private Recognizable unknownCommand;
 
-    public CommandRecognizer() {
-        init();
+    public <T extends Recognizable> boolean addCommand(T recognizable) {
+        Objects.requireNonNull(recognizable);
+
+        return this.allKnownCommand.add(recognizable);
     }
 
-    private void init() {
-        this.allKnownCommand.add(new FollowsCommand());
-        this.allKnownCommand.add(new PostingCommand());
-        this.allKnownCommand.add(new ReadingCommand());
-        this.allKnownCommand.add(new WallCommand());
+    public <T extends Recognizable> void setUnknownCommand(T command) {
+        Objects.requireNonNull(command);
+
+        this.unknownCommand = command;
     }
 
     public <T extends Recognizable> T recognize(String line) {
@@ -30,7 +32,7 @@ public class CommandRecognizer {
         T recognizedCommand = recognizeCommand(line, this.allKnownCommand);
 
         if( recognizedCommand == null ) {
-            recognizedCommand = (T) new UnknownCommand();
+            recognizedCommand = (T)this.unknownCommand;
         }
 
         return recognizedCommand;

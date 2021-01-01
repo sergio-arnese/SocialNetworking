@@ -3,6 +3,7 @@ package it.sergio.arnese.kata.socialnetworking;
 import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
+import it.sergio.arnese.kata.socialnetworking.domain.configuration.CommandRecognizerConf;
 
 public class Appl {
 
@@ -12,7 +13,7 @@ public class Appl {
 
     public void run() {
         Console console = new ConsoleReal();
-        CommandRecognizer commandRecognizer = new CommandRecognizer();
+        CommandRecognizer commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
         SocialNetwork socialNetwork = new SocialNetwork();
 
         while(true) {
