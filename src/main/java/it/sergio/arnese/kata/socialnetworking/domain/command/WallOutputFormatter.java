@@ -2,12 +2,15 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.Message;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
+import it.sergio.arnese.kata.socialnetworking.domain.configuration.MeasureMapperConf;
 import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 
 import java.util.Date;
 import java.util.List;
 
 public class WallOutputFormatter extends CommandOutputFormatter {
+
+    private MeasureMapper mapperConf = new MeasureMapperConf().getMeasureMapper();
 
     public String getWallOutput(User user) {
         String followedMessages = getAllFollowedUserMessageFormatted(user.getAllFollowedUser());
@@ -40,6 +43,6 @@ public class WallOutputFormatter extends CommandOutputFormatter {
     protected String getFormatted(String userName, Message message) {
         TimeDistance timeDistance = new TimeDistance(new Date().getTime() - message.getTimestamp().getTime());
 
-        return userName + " - " + message.getContent() + " " + "("+ timeDistance.getDistance() + " " + timeDistance.getMeasure() + " ago)";
+        return userName + " - " + message.getContent() + " " + "("+ timeDistance.getDistance() + " " + this.mapperConf.getMappedValue(timeDistance.getMeasure()) + " ago)";
     }
 }
