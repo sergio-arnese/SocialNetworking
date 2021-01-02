@@ -3,7 +3,7 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class ReadingCommand implements Command, Recognizable {
+public class ReadingCommand implements CommandSN {
 
     @Override
     public boolean isKnown(CommandLine commandLine) {

@@ -6,7 +6,7 @@ import it.sergio.arnese.kata.socialnetworking.domain.User;
 
 import java.util.Date;
 
-public class PostingCommand implements Command, Recognizable {
+public class PostingCommand implements CommandSN {
     private final String POSTING_COMMAND = "->";
 
     @Override

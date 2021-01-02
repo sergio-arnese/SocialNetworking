@@ -3,7 +3,7 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
 
-public class FollowsCommand implements Command, Recognizable {
+public class FollowsCommand implements CommandSN {
     private final String FOLLOWS_COMMAND = "follows";
 
     @Override

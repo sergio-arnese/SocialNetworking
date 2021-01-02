@@ -6,43 +6,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CommandRecognizer {
-    private final List<Recognizable> allKnownCommand = new ArrayList<>();
-    private Recognizable unknownCommand;
+public class CommandRecognizer <T extends CommandSN> {
+    private final List<T> allKnownCommand = new ArrayList<>();
+    private T unknownCommand;
 
-    public <T extends Recognizable> boolean addCommand(T recognizable) {
+    public boolean addCommand(T recognizable) {
         Objects.requireNonNull(recognizable);
 
         return this.allKnownCommand.add(recognizable);
     }
 
-    public <T extends Recognizable> void setUnknownCommand(T command) {
+    public void setUnknownCommand(T command) {
         Objects.requireNonNull(command);
 
         this.unknownCommand = command;
     }
 
-    public <T extends Recognizable> T recognize(CommandLine commandLine) {
+    public T recognize(CommandLine commandLine) {
         Objects.requireNonNull(commandLine);
 
         return recognizeCommand(commandLine);
     }
 
-    private <T extends Recognizable> T recognizeCommand(CommandLine commandLine) {
+    private T recognizeCommand(CommandLine commandLine) {
         T recognizedCommand = recognizeCommand(commandLine, this.allKnownCommand);
 
         if( recognizedCommand == null ) {
-            recognizedCommand = (T)this.unknownCommand;
+            recognizedCommand = this.unknownCommand;
         }
 
         return recognizedCommand;
     }
 
-    private <T extends Recognizable> T recognizeCommand(CommandLine commandLine, List<Recognizable> recognizables) {
+    private T recognizeCommand(CommandLine commandLine, List<T> recognizables) {
         T recognizedCommand = null;
-        for (Recognizable recognizable: recognizables) {
+        for (T recognizable: recognizables) {
             if( recognizable.isKnown(commandLine) ) {
-                recognizedCommand = (T) recognizable;
+                recognizedCommand = recognizable;
             }
         }
 

@@ -2,14 +2,14 @@ package it.sergio.arnese.kata.socialnetworking.domain;
 
 import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
-import it.sergio.arnese.kata.socialnetworking.domain.command.Recognizable;
+import it.sergio.arnese.kata.socialnetworking.domain.command.CommandSN;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class SocialNetwork {
-    private CommandRecognizer commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
+    private CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
     private CommandLine commandLine;
     private List<User> users = new ArrayList<>();
 
@@ -24,9 +24,9 @@ public class SocialNetwork {
     public String elaborate(CommandLine commandLine) {
         this.commandLine = Objects.requireNonNull(commandLine);
 
-        Recognizable recognizable = this.commandRecognizer.recognize(this.commandLine);
+        Command command = this.commandRecognizer.recognize(this.commandLine);
 
-        return ((Command)recognizable).apply(this);
+        return command.apply(this);
     }
 
     public boolean addUser(User user) {

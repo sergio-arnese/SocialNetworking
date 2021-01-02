@@ -2,7 +2,7 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 
-public class UnknownCommand implements Command, Recognizable {
+public class UnknownCommand implements CommandSN {
 
     @Override
     public boolean isKnown(CommandLine commandLine) {
