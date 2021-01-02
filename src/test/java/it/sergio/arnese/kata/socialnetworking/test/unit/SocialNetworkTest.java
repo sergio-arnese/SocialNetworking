@@ -1,4 +1,4 @@
-package it.sergio.arnese.kata.socialnetworking.test;
+package it.sergio.arnese.kata.socialnetworking.test.unit;
 
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
