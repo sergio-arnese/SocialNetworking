@@ -5,6 +5,7 @@ import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandSN;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -66,5 +67,31 @@ public class SocialNetwork {
 
     public List<User> getAllUser() {
         return this.users;
+    }
+
+    public void addFollowedUser(String userName, String followedUserName) {
+        Objects.requireNonNull(userName);
+        Objects.requireNonNull(followedUserName);
+
+        if( !this.hasUser(userName) || !this.hasUser(followedUserName) ) {
+            return;
+        }
+
+        User user = this.getUser(userName);
+        User followedUser = this.getUser(followedUserName);
+
+        user.addFollowed(followedUser);
+    }
+
+    public void addMessageToUser(String userName, String userMessage) {
+        Objects.requireNonNull(userName);
+        Objects.requireNonNull(userMessage);
+
+        if( !this.hasUser(userName) ) {
+            return;
+        }
+
+        User user = this.getUser(userName);
+        user.addMessage(new Message(userMessage, new Date()));
     }
 }

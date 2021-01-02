@@ -27,12 +27,7 @@ public class FollowsCommand implements CommandSN {
         String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND);
         String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND);
 
-        if( socialNetwork.hasUser(userName) && socialNetwork.hasUser(followedUserName) ) {
-            User user = socialNetwork.getUser(userName);
-            User followedUser = socialNetwork.getUser(followedUserName);
-
-            user.addFollowed(followedUser);
-        }
+        socialNetwork.addFollowedUser(userName, followedUserName);
 
         return "";
     }

@@ -31,8 +31,7 @@ public class PostingCommand implements CommandSN {
         String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND);
 
         if( socialNetwork.hasUser(userName) ) {
-            User user = socialNetwork.getUser(userName);
-            user.addMessage(new Message(userMessage, new Date()));
+            socialNetwork.addMessageToUser(userName, userMessage);
         } else {
             User user = new User(userName);
             user.addMessage(new Message(userMessage, new Date()));
