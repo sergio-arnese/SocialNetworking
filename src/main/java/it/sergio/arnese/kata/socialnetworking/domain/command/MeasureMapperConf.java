@@ -1,7 +1,5 @@
 package it.sergio.arnese.kata.socialnetworking.domain.command;
 
-import it.sergio.arnese.kata.socialnetworking.domain.command.MeasureUnitName;
-import it.sergio.arnese.kata.socialnetworking.domain.command.MeasureMapper;
 import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 
 public class MeasureMapperConf {
