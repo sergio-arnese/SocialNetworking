@@ -12,10 +12,12 @@ public class WallCommand implements CommandSN {
             return false;
         }
 
+        boolean isExpectedCommand = commandLine.containsCommandName(WALL_COMMAND);
+
         boolean isFirstArgEmpty = "".equals(commandLine.getArgBeforeCommandName(WALL_COMMAND));
         boolean isThirdArgEmpty = "".equals(commandLine.getArgAfterCommandName(WALL_COMMAND));
 
-        return (!isFirstArgEmpty && isThirdArgEmpty);
+        return (isExpectedCommand && !isFirstArgEmpty && isThirdArgEmpty);
     }
 
     @Override

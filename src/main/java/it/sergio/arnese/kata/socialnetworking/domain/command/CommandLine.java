@@ -13,6 +13,12 @@ public class CommandLine {
         return this.line;
     }
 
+    public boolean containsCommandName(String commandName) {
+        Objects.requireNonNull(commandName);
+
+        return this.line.contains(commandName);
+    }
+
     public String getArgBeforeCommandName(String commandName) {
         Objects.requireNonNull(commandName);
 

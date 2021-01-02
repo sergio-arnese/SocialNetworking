@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class CommandRecognizer <T extends CommandSN> {
+public class CommandRecognizer <T extends Recognizable> {
     private final List<T> allKnownCommand = new ArrayList<>();
     private T unknownCommand;
 

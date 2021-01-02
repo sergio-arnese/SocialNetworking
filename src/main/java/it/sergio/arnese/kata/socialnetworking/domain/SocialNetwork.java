@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Objects;
 
 public class SocialNetwork {
-    private CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
+    private final CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
     private CommandLine commandLine;
     private List<User> users = new ArrayList<>();
 

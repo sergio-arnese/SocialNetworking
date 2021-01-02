@@ -12,19 +12,17 @@ public class FollowsCommand implements CommandSN {
             return false;
         }
 
+        boolean isExpectedCommand = commandLine.containsCommandName(FOLLOWS_COMMAND);
+
         boolean isFirstArgEmpty = "".equals(commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND));
         boolean isThirdArgEmpty = "".equals(commandLine.getArgAfterCommandName(FOLLOWS_COMMAND));
 
-        return (!isFirstArgEmpty && !isThirdArgEmpty);
+        return (isExpectedCommand && !isFirstArgEmpty && !isThirdArgEmpty);
     }
 
     @Override
     public String apply(SocialNetwork socialNetwork) {
         CommandLine commandLine = socialNetwork.getCommandLine();
-
-//        if( ! isKnown(commandLine) ) {
-//            return "";
-//        }
 
         String userName = commandLine.getArgBeforeCommandName(FOLLOWS_COMMAND);
         String followedUserName = commandLine.getArgAfterCommandName(FOLLOWS_COMMAND);

@@ -73,4 +73,32 @@ public class CommandRecognizerTest {
 
         assertEquals(UnknownCommand.class.getSimpleName(), commandRecognizer.recognize(commandLine).getClass().getSimpleName());
     }
+
+    @Test
+    void testWhenLineIsNotAvailableCommandButSeemsTwoArgsCommand() {
+        String notAvailableCommand = "user ::";
+        CommandLine commandLine = new CommandLine(notAvailableCommand);
+        CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
+
+        assertEquals(UnknownCommand.class.getSimpleName(), commandRecognizer.recognize(commandLine).getClass().getSimpleName());
+    }
+
+    @Test
+    void testWhenLineIsNotAvailableCommandButSeemsFollows() {
+        String notAvailableCommand = "user follows";
+        CommandLine commandLine = new CommandLine(notAvailableCommand);
+        CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
+
+        assertEquals(UnknownCommand.class.getSimpleName(), commandRecognizer.recognize(commandLine).getClass().getSimpleName());
+    }
+
+    @Test
+    void testWhenLineSeemsPosting() {
+        String userName = "user";
+        String commandName = "->";
+        CommandLine commandLine = new CommandLine(userName + " " + commandName + " ");
+        CommandRecognizer<CommandSN> commandRecognizer = new CommandRecognizerConf().getCommandRecognizer();
+
+        assertEquals(UnknownCommand.class.getSimpleName(), commandRecognizer.recognize(commandLine).getClass().getSimpleName());
+    }
 }

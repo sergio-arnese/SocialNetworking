@@ -15,19 +15,17 @@ public class PostingCommand implements CommandSN {
             return false;
         }
 
+        boolean isExpectedCommand = commandLine.containsCommandName(POSTING_COMMAND);
+
         boolean isFirstArgEmpty = "".equals(commandLine.getArgBeforeCommandName(POSTING_COMMAND));
         boolean isThirdArgEmpty = "".equals(commandLine.getArgAfterCommandName(POSTING_COMMAND));
 
-        return (!isFirstArgEmpty && !isThirdArgEmpty);
+        return (isExpectedCommand && !isFirstArgEmpty && !isThirdArgEmpty);
     }
 
     @Override
     public String apply(SocialNetwork socialNetwork) {
         CommandLine commandLine = socialNetwork.getCommandLine();
-
-//        if( ! isKnown(commandLine) ) {
-//            return "";
-//        }
 
         String userName = commandLine.getArgBeforeCommandName(POSTING_COMMAND);
         String userMessage = commandLine.getArgAfterCommandName(POSTING_COMMAND);
