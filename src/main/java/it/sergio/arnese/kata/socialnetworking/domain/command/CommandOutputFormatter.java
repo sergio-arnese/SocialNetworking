@@ -14,10 +14,10 @@ public abstract class CommandOutputFormatter {
         StringBuffer buff = new StringBuffer();
 
         for( int i = 0; i < messages.size() - 1; i ++ ) {
-            buff.append(getFormatted(userName, messages.get(i))).append(System.lineSeparator());
+            buff.append(getMessageFormatted(userName, messages.get(i))).append(System.lineSeparator());
         }
 
-        buff.append(getFormatted(userName, messages.get(messages.size() - 1)));
+        buff.append(getMessageFormatted(userName, messages.get(messages.size() - 1)));
 
         return buff.toString();
     }
@@ -26,5 +26,5 @@ public abstract class CommandOutputFormatter {
         return getAllMessageFormatted("", messages);
     }
 
-    protected abstract String getFormatted(String userName, Message message);
+    protected abstract String getMessageFormatted(String userName, Message message);
 }

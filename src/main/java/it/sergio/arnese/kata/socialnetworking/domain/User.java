@@ -36,10 +36,10 @@ public class User {
     }
 
     public List<Message> getAllMessage() {
-        return this.messages;
+        return new ArrayList<>(this.messages);
     }
 
     public List<User> getAllFollowedUser() {
-        return this.followedUsers;
+        return new ArrayList<>(this.followedUsers);
     }
 }

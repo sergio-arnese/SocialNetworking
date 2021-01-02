@@ -66,7 +66,7 @@ public class SocialNetwork {
     }
 
     public List<User> getAllUser() {
-        return this.users;
+        return new ArrayList<>(this.users);
     }
 
     public void addFollowedUser(String userName, String followedUserName) {

@@ -22,6 +22,6 @@ public class Message {
     }
 
     public Date getTimestamp() {
-        return this.timestamp;
+        return new Date(this.timestamp.getTime());
     }
 }
