@@ -2,7 +2,6 @@ package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 import it.sergio.arnese.kata.socialnetworking.domain.Message;
 import it.sergio.arnese.kata.socialnetworking.domain.User;
-import it.sergio.arnese.kata.socialnetworking.domain.configuration.MeasureMapperConf;
 import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 
 import java.util.Date;

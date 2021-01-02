@@ -1,6 +1,5 @@
-package it.sergio.arnese.kata.socialnetworking.domain.configuration;
+package it.sergio.arnese.kata.socialnetworking.domain;
 
-import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.command.*;
 
 public class CommandRecognizerConf {

@@ -3,7 +3,6 @@ package it.sergio.arnese.kata.socialnetworking.domain;
 import it.sergio.arnese.kata.socialnetworking.domain.command.Command;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
 import it.sergio.arnese.kata.socialnetworking.domain.command.Recognizable;
-import it.sergio.arnese.kata.socialnetworking.domain.configuration.CommandRecognizerConf;
 
 import java.util.ArrayList;
 import java.util.List;

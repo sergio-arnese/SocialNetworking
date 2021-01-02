@@ -1,4 +1,4 @@
-package it.sergio.arnese.kata.socialnetworking.domain;
+package it.sergio.arnese.kata.socialnetworking.domain.command;
 
 public class MeasureUnitName {
     public static final String DAYS = "days";

@@ -1,4 +1,4 @@
-package it.sergio.arnese.kata.socialnetworking;
+package it.sergio.arnese.kata.socialnetworking.boundary;
 
 public interface Console {
 

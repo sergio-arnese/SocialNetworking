@@ -2,7 +2,7 @@ package it.sergio.arnese.kata.socialnetworking.test.unit;
 
 import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizer;
 import it.sergio.arnese.kata.socialnetworking.domain.command.*;
-import it.sergio.arnese.kata.socialnetworking.domain.configuration.CommandRecognizerConf;
+import it.sergio.arnese.kata.socialnetworking.domain.CommandRecognizerConf;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

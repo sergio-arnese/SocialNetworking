@@ -1,5 +1,7 @@
 package it.sergio.arnese.kata.socialnetworking;
 
+import it.sergio.arnese.kata.socialnetworking.boundary.Console;
+import it.sergio.arnese.kata.socialnetworking.boundary.ConsoleReal;
 import it.sergio.arnese.kata.socialnetworking.domain.SocialNetwork;
 import it.sergio.arnese.kata.socialnetworking.domain.command.CommandLine;
 

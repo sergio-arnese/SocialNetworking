@@ -1,8 +1,8 @@
 package it.sergio.arnese.kata.socialnetworking.test.unit;
 
-import it.sergio.arnese.kata.socialnetworking.domain.MeasureUnitName;
+import it.sergio.arnese.kata.socialnetworking.domain.command.MeasureUnitName;
 import it.sergio.arnese.kata.socialnetworking.domain.command.MeasureMapper;
-import it.sergio.arnese.kata.socialnetworking.domain.configuration.MeasureMapperConf;
+import it.sergio.arnese.kata.socialnetworking.domain.command.MeasureMapperConf;
 import it.sergio.arnese.kata.socialnetworking.util.TimeDistance;
 import org.junit.jupiter.api.Test;
 
